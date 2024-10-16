@@ -1,13 +1,15 @@
-import Hero from "components/HomePage/Hero";
-import { ContentWrapper } from "./styled";
+import { Hero, Genres } from "components/HomePage";
+import { ContentWrapper, TrendsAndArtistsSection } from "./styled";
 
 function Home() {
   return (
     <ContentWrapper>
       <Hero />
-      <div>Genres</div>
-      <div>Songs Table</div>
-      <aside>Artist</aside>
+      <Genres />
+      <TrendsAndArtistsSection>
+        <div>Songs Table</div>
+        <aside>Artist</aside>
+      </TrendsAndArtistsSection>
     </ContentWrapper>
   );
 }
