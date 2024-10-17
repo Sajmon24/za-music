@@ -8,6 +8,7 @@ import { SectionTitle } from "components/ui/Typography";
 import "swiper/css";
 import "swiper/css/pagination";
 import { loadCharts } from "services/api";
+import TracksTable from "components/TracksTable";
 
 function Home() {
   const [chart, setChart] = useState();
@@ -37,12 +38,12 @@ function Home() {
         <div>
           <GreyTitle>Global</GreyTitle>
           <SectionTitle>Tranding right now</SectionTitle>
-          <div>Songs Table</div>
+          <TracksTable tracks={chart?.tracks?.data} />
         </div>
         <StyledAside>
           <GreyTitle>Global</GreyTitle>
           <SectionTitle>Top Artists</SectionTitle>
-          <Artists isLoading={isLoading} artists={chart?.artists.data} />
+          <Artists isLoading={isLoading} artists={chart?.artists?.data} />
         </StyledAside>
       </TrendsAndArtistsSection>
     </ContentWrapper>
