@@ -7,6 +7,6 @@ export const ContentWrapper = styled.div`
   width: 100%;
 
   display: ${(props) => props.display || "block"};
-  align-items: ${(props) => props.items || "block"};
-  justify-content: ${(props) => props.content || "block"};
+  align-items: ${(props) => props.items || "flex-start"};
+  justify-content: ${(props) => props.content || "start"};
 `;

@@ -13,7 +13,7 @@ export const StyledButton = styled.button`
     opacity 0.1 ease-in-out,
     background-color 0.1 ease-in-out;
   ${(props) =>
-    props.withBackground &&
+    props.bg &&
     css`
       border-radius: 50%;
       background-color: ${props.backgroundColor || props.theme.colors.lightWhite};

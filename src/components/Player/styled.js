@@ -1,4 +1,4 @@
-import { SubText } from "components/ui/Typography";
+import { SubText, Text } from "components/ui/Typography";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -17,6 +17,7 @@ export const TrackInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 25px;
+  padding-right: 15px;
 `;
 
 export const TrackInfoTextWrapper = styled.div`
@@ -33,6 +34,19 @@ export const TrackImage = styled.img`
 
 export const ArtistName = styled(SubText)`
   color: ${({ theme }) => theme.colors.secondaryGrey};
+  display: -webkit-box;
+  overflow: hidden;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;
+
+export const TrackTitle = styled(Text)`
+  display: -webkit-box;
+  overflow: hidden;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 
 export const ControlsWrapper = styled.div`
@@ -49,6 +63,7 @@ export const ProgressWrapper = styled.div`
 `;
 
 export const TrackTime = styled(SubText)`
+  width: 80px;
   margin: 0 20px;
   color: ${(props) => (props.grey ? props.theme.colors.secondaryGrey : "inherit")};
 `;

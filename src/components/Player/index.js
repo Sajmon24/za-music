@@ -1,6 +1,8 @@
 import Slider from "rc-slider";
+import { useContext, useEffect, useRef, useState } from "react";
+import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
+import { actions } from "context/actions";
 import { ContentWrapper } from "components/Layout";
-import { Text } from "components/ui/Typography";
 import {
   Wrapper,
   TrackInfoWrapper,
@@ -11,99 +13,123 @@ import {
   ProgressWrapper,
   TrackTime,
   VolumeWrapper,
+  TrackTitle,
 } from "./styled";
 import IconButton from "components/ui/IconButton";
-import { Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
+import { Pause, Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
 import { theme } from "styles/Theme";
-
-const track = {
-  id: 1926829907,
-  title: "WOW",
-  title_short: "WOW",
-  title_version: "",
-  link: "https://www.deezer.com/track/1926829907",
-  duration: 143,
-  rank: 499252,
-  explicit_lyrics: false,
-  explicit_content_lyrics: 0,
-  explicit_content_cover: 0,
-  preview:
-    "https://cdnt-preview.dzcdn.net/api/1/1/6/7/4/0/6747a054d2ccfdb9b7576969ccc27ab0.mp3?hdnea=exp=1729242468~acl=/api/1/1/6/7/4/0/6747a054d2ccfdb9b7576969ccc27ab0.mp3*~data=user_id=0,application_id=42~hmac=a9e634672e9c628a6ae3b5450520f447bb69765cb8662a4801fc4e58260e474a",
-  md5_image: "fa95f881444bd00a203540479e61da0b",
-  position: 1,
-  artist: {
-    id: 7656150,
-    name: "Toby Romeo",
-    link: "https://www.deezer.com/artist/7656150",
-    picture: "https://api.deezer.com/artist/7656150/image",
-    picture_small:
-      "https://e-cdns-images.dzcdn.net/images/artist/b3d75fd8dbfc6ae737909cccd8000740/56x56-000000-80-0-0.jpg",
-    picture_medium:
-      "https://e-cdns-images.dzcdn.net/images/artist/b3d75fd8dbfc6ae737909cccd8000740/250x250-000000-80-0-0.jpg",
-    picture_big:
-      "https://e-cdns-images.dzcdn.net/images/artist/b3d75fd8dbfc6ae737909cccd8000740/500x500-000000-80-0-0.jpg",
-    picture_xl:
-      "https://e-cdns-images.dzcdn.net/images/artist/b3d75fd8dbfc6ae737909cccd8000740/1000x1000-000000-80-0-0.jpg",
-    radio: true,
-    tracklist: "https://api.deezer.com/artist/7656150/top?limit=50",
-    type: "artist",
-  },
-  album: {
-    id: 359481347,
-    title: "WOW",
-    cover: "https://api.deezer.com/album/359481347/image",
-    cover_small:
-      "https://e-cdns-images.dzcdn.net/images/cover/fa95f881444bd00a203540479e61da0b/56x56-000000-80-0-0.jpg",
-    cover_medium:
-      "https://e-cdns-images.dzcdn.net/images/cover/fa95f881444bd00a203540479e61da0b/250x250-000000-80-0-0.jpg",
-    cover_big:
-      "https://e-cdns-images.dzcdn.net/images/cover/fa95f881444bd00a203540479e61da0b/500x500-000000-80-0-0.jpg",
-    cover_xl:
-      "https://e-cdns-images.dzcdn.net/images/cover/fa95f881444bd00a203540479e61da0b/1000x1000-000000-80-0-0.jpg",
-    md5_image: "fa95f881444bd00a203540479e61da0b",
-    tracklist: "https://api.deezer.com/album/359481347/tracks",
-    type: "album",
-  },
-  type: "track",
-};
+import { formatSecondsToMSS } from "utils/time";
 
 function Player() {
+  const dispatch = useContext(PlayerDispatchContext);
+  const { track, isPlaying } = useContext(PlayerContext);
+  const [playerState, setPlayerState] = useState({
+    currentTime: 0,
+    duration: 0,
+    volume: 0.7,
+  });
+  const audioRef = useRef();
+
+  const togglePlay = () => dispatch({ type: actions.TOGGLE_PLAY });
+
+  const handlePrevSong = () => dispatch({ type: actions.PREV_SONG });
+  const handleNextSong = () => dispatch({ type: actions.NEXT_SONG });
+
+  const onTimeUpdate = () => {
+    if (!audioRef?.current) return;
+    const currentTime = audioRef.current.currentTime;
+    const duration = audioRef.current.duration;
+    setPlayerState((prev) => ({ ...prev, currentTime, duration }));
+  };
+
+  const onTrackTimeDrag = (newTime) => {
+    if (!audioRef?.current) return;
+
+    audioRef.current.currentTime = newTime;
+    setPlayerState((prev) => ({ ...prev, currentTime: newTime }));
+  };
+
+  const toggleVolume = () => {
+    const newVolume = playerState.volume > 0 ? 0 : 1;
+    onVolumeChange(newVolume);
+  };
+
+  const onVolumeChange = (newVolume) => {
+    if (!audioRef?.current) return;
+
+    audioRef.current.volume = newVolume;
+    setPlayerState((prev) => ({ ...prev, volume: newVolume }));
+  };
+
+  useEffect(() => {
+    if (!audioRef?.current) return;
+
+    if (isPlaying) {
+      audioRef?.current.play().catch((err) => console.log(err));
+    } else {
+      audioRef?.current.pause();
+    }
+  }, [audioRef, track, isPlaying]);
+
+  if (!track) {
+    return null;
+  }
+
   return (
     <Wrapper>
-      <ContentWrapper display="flex">
+      <ContentWrapper display="flex" items="center">
+        <audio
+          ref={audioRef}
+          src={track?.preview}
+          controls
+          onTimeUpdate={onTimeUpdate}
+          onLoadedMetadata={onTimeUpdate}
+          hidden
+          onEnded={handleNextSong}
+        />
         <TrackInfoWrapper>
           <TrackImage src={track?.album.cover} alt={`${track?.album.title}'s cover`} />
           <TrackInfoTextWrapper>
-            <Text>{track?.title}</Text>
+            <TrackTitle>{track?.title}</TrackTitle>
             <ArtistName>{track?.artist.name}</ArtistName>
           </TrackInfoTextWrapper>
         </TrackInfoWrapper>
         <ControlsWrapper>
-          <IconButton width={35} height={35}>
+          <IconButton onClick={handlePrevSong} width={35} height={35}>
             <SkipLeft />
           </IconButton>
-          <IconButton width={55} height={55} withBackground>
-            <Play />
+          <IconButton onClick={togglePlay} width={55} height={55} withBackground>
+            {isPlaying ? <Pause /> : <Play />}
           </IconButton>
-          <IconButton width={35} height={35}>
+          <IconButton onClick={handleNextSong} width={35} height={35}>
             <SkipRight />
           </IconButton>
         </ControlsWrapper>
         <ProgressWrapper>
-          <TrackTime>0:00</TrackTime>
+          <TrackTime>{formatSecondsToMSS(playerState.currentTime)}</TrackTime>
           <Slider
+            step={0.2}
+            min={0}
+            max={playerState.duration}
+            value={playerState.currentTime}
+            onChange={onTrackTimeDrag}
             style={{ padding: "3px 0" }}
             trackStyle={{ height: 8, backgroundColor: theme.colors.white }}
             railStyle={{ height: 8, backgroundColor: theme.colors.darkGrey }}
             handleStyle={{ border: "none", backgroundColor: theme.colors.white, marginTop: -3 }}
           />
-          <TrackTime>2:30</TrackTime>
+          <TrackTime>{formatSecondsToMSS(playerState.duration)}</TrackTime>
         </ProgressWrapper>
         <VolumeWrapper>
-          <IconButton width={24} height={24}>
+          <IconButton onClick={toggleVolume} width={24} height={24}>
             <Volume />
           </IconButton>
           <Slider
+            step={0.01}
+            min={0}
+            max={1}
+            value={playerState.volume}
+            onChange={onVolumeChange}
             style={{ padding: "3px 0" }}
             trackStyle={{ height: 8, backgroundColor: theme.colors.white }}
             railStyle={{ height: 8, backgroundColor: theme.colors.darkGrey }}
