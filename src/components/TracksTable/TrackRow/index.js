@@ -16,7 +16,7 @@ import { Heart, Pause, Play } from "components/ui/Icons";
 import { formatSecondsToMSS } from "utils/time";
 import { SubText } from "components/ui/Typography";
 
-export function TrackRow({ track, index, onClick, isPlaying }) {
+export function TrackRow({ track, index, onClick, isPlaying, handleSaveTrackClick, isSaved }) {
   return (
     <StyledTrackRow key={track?.id} onClick={() => onClick(track)}>
       <TableData>
@@ -46,8 +46,15 @@ export function TrackRow({ track, index, onClick, isPlaying }) {
       </TableData>
       <TableData>
         {track ? (
-          <StyledIconButton width={25} height={25}>
-            <Heart />
+          <StyledIconButton
+            width={25}
+            height={25}
+            onClick={(event) => {
+              event.stopPropagation();
+              handleSaveTrackClick(track.id);
+            }}
+          >
+            <Heart fill={isSaved ? theme.colors.white : "none"} />
           </StyledIconButton>
         ) : (
           <StyledIconButton width={25} height={25}>
@@ -76,6 +83,8 @@ TrackRow.propTypes = {
   }),
   index: PropTypes.number,
   isPlaying: PropTypes.bool,
+  handleSaveTrackClick: PropTypes.func,
+  isSaved: PropTypes.bool,
 };
 
 export default TrackRow;

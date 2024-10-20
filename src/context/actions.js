@@ -3,4 +3,5 @@ export const actions = {
   TOGGLE_PLAY: "TOGGLE_PLAY",
   PREV_SONG: "PREV_SONG",
   NEXT_SONG: "NEXT_SONG",
+  TOGGLE_SAVE_TRACK: "TOGGLE_SAVE_TRACK",
 };
