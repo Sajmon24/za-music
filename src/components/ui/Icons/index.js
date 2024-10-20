@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
-import { ReactComponent as ArrowLeftIcon } from "assets/icons/arrow-left.svg";
+import { ReactComponent as ArrowRightIcon } from "assets/icons/arrow-right.svg";
 import { ReactComponent as MusicIcon } from "assets/icons/music.svg";
 import { ReactComponent as SkipIcon } from "assets/icons/skip.svg";
 import { ReactComponent as VolumeIcon } from "assets/icons/volume.svg";
@@ -36,11 +36,11 @@ const Music = styled(MusicIcon)`
   stroke: ${(props) => props.color || "white"};
 `;
 
-const ArrowLeft = styled(ArrowLeftIcon)`
+const ArrowRight = styled(ArrowRightIcon)`
   stroke: ${(props) => props.color || "white"};
 `;
 
-const ArrowRight = styled(ArrowLeft)`
+const ArrowLeft = styled(ArrowRight)`
   transform: rotate(180deg);
 `;
 
