@@ -1,29 +1,32 @@
 import styled from "styled-components";
-import { SectionSubtitle } from "components/ui/Typography";
 import { MOBILE_PLAYER_HEIGHT, PLAYER_HEIGHT } from "common/constants";
 import { device } from "styles/BreakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 90px;
   padding-top: 52px;
   padding-bottom: calc(${PLAYER_HEIGHT}px + 50px);
 
   ${device.lg} {
     padding-bottom: calc(${MOBILE_PLAYER_HEIGHT}px + 50px);
   }
+
+  ${device.md} {
+    gap: 45px;
+    padding-top: 28px;
+  }
 `;
 
-export const InputWrapper = styled.div`
-  margin: 0 auto;
-  width: 70%;
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;
 
-export const TableTitle = styled(SectionSubtitle)`
-  margin-bottom: 30px;
-`;
-
-export const NotFountText = styled(SectionSubtitle)`
-  color: ${({ theme }) => theme.colors.secondaryGrey};
+export const SongsCountWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
 `;

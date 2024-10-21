@@ -4,16 +4,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import PropTypes from "prop-types";
 import { Wrapper, ArtistsWrapper, ArtistSkeleonWrapper, ArtistLoaderWrapper } from "./styled";
 import ArtistCard from "./ArtistCard";
+import { useWindowSize } from "hooks/useWindowSize";
+import { breakpoints } from "styles/BreakPoints";
 
 function Artists({ isLoading, artists }) {
+  const { width } = useWindowSize();
+  const isMobileLayout = width > breakpoints.md;
+
   return (
     <Wrapper>
       <ArtistsWrapper>
         {isLoading &&
           [...Array(8).keys()].map((num) => (
             <ArtistLoaderWrapper key={num}>
-              <Skeleton wrapper={ArtistSkeleonWrapper} key={num} height={95} width={95} circle />
-              <Skeleton height={27} />
+              <Skeleton
+                wrapper={ArtistSkeleonWrapper}
+                key={num}
+                height={isMobileLayout ? 95 : 75}
+                width={isMobileLayout ? 95 : 75}
+                circle
+              />
+              <Skeleton height={isMobileLayout ? 27 : 19} />
             </ArtistLoaderWrapper>
           ))}
         <Swiper slidesPerView="auto" spaceBetween={20} modules={[Pagination]}>

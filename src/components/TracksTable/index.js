@@ -6,8 +6,11 @@ import { Line, Table, TableHead, TableHeading, TableHeadingTime } from "./styled
 import { TrackRow } from "./TrackRow";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 import { actions } from "context/actions";
+import { useWindowSize } from "hooks/useWindowSize";
+import { breakpoints } from "styles/BreakPoints";
 
 function TracksTable({ tracks, isLoading }) {
+  const { width } = useWindowSize();
   const dispatch = useContext(PlayerDispatchContext);
   const { track, isPlaying, savedTrackIds } = useContext(PlayerContext);
 
@@ -38,12 +41,16 @@ function TracksTable({ tracks, isLoading }) {
           <TableHeading>
             <SubText>{isLoading ? <Skeleton /> : "Song name"}</SubText>
           </TableHeading>
-          <TableHeadingTime>
-            <SubText>{isLoading ? <Skeleton /> : "Time"}</SubText>
-          </TableHeadingTime>
-          <TableHeading>
-            <SubText>{isLoading ? <Skeleton /> : "Album name"}</SubText>
-          </TableHeading>
+          {width > breakpoints.md && (
+            <TableHeadingTime>
+              <SubText>{isLoading ? <Skeleton /> : "Time"}</SubText>
+            </TableHeadingTime>
+          )}
+          {width > breakpoints.md && (
+            <TableHeading>
+              <SubText>{isLoading ? <Skeleton /> : "Album name"}</SubText>
+            </TableHeading>
+          )}
           <TableHeading>
             <SubText>{isLoading ? <Skeleton width={70} /> : "Action"}</SubText>
           </TableHeading>
@@ -63,9 +70,11 @@ function TracksTable({ tracks, isLoading }) {
               index={index}
               handleSaveTrackClick={handleSaveTrackClick}
               isSaved={savedTrackIds.includes(currentTrack.id)}
+              screenWidth={width}
             />
           ))}
-        {isLoading && [...Array(9).keys()].map((num) => <TrackRow key={num} index={num} />)}
+        {isLoading &&
+          [...Array(9).keys()].map((num) => <TrackRow key={num} index={num} screenWidth={width} />)}
       </tbody>
     </Table>
   );

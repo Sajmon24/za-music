@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { toast } from "react-toastify";
 import { Pagination } from "swiper/modules";
@@ -15,8 +16,11 @@ import {
   Wrapper,
   GenreSkeleonWrapper,
 } from "./styled";
+import { breakpoints } from "styles/BreakPoints";
+import { useWindowSize } from "hooks/useWindowSize";
 
 function Genres() {
+  const { width } = useWindowSize();
   const [genres, setGenres] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,16 +71,23 @@ function Genres() {
             <Skeleton
               wrapper={GenreSkeleonWrapper}
               key={num}
-              height={116}
-              width={220}
+              width={width < breakpoints.md ? 137 : 220}
+              height={width < breakpoints.md ? 95 : 116}
               borderRadius={25}
             />
           ))}
-        <Swiper ref={sliderRef} slidesPerView="auto" spaceBetween={20} modules={[Pagination]}>
+        <Swiper
+          ref={sliderRef}
+          slidesPerView="auto"
+          spaceBetween={width < breakpoints.md ? 9 : 20}
+          modules={[Pagination]}
+        >
           {!isLoading &&
             genres?.map((genre) => (
               <SwiperSlide key={genre.id} style={{ width: "auto" }}>
-                <GenreCard name={genre.name} backgroundImage={genre.picture_medium} />
+                <Link to={`/genres/${genre.id}`}>
+                  <GenreCard name={genre.name} backgroundImage={genre.picture_medium} />
+                </Link>
               </SwiperSlide>
             ))}
         </Swiper>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledInput = styled.input`
   width: 100%;
   background: ${({ theme }) => theme.colors.lightWhite};
-  background-image: ${(props) => `url(${props.startIcon})`};
+  background-image: ${(props) => `url(${props.icon})`};
   background-repeat: no-repeat;
   background-position: 17px 21px;
 
