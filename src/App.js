@@ -1,9 +1,9 @@
 import { useEffect, useReducer } from "react";
 import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "styled-components";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { GlobalStyles } from "styles/Global";
 import { theme } from "styles/Theme";
+import { ThemeProvider } from "styled-components";
 import { initialState, playerReducer } from "context/playerReducer";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 import { setStorageValue } from "services/localStorage";
@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     setStorageValue("savedTrackIds", state.savedTrackIds);
-  }, [state.stateTrackIds]);
+  }, [state.savedTrackIds]);
 
   return (
     <PlayerContext.Provider value={state}>

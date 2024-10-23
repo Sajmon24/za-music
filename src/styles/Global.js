@@ -11,6 +11,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+
   body {
     min-height: 100vh;
     font-family: ${({ theme }) => theme.fonts.poppins}, sans-serif;
@@ -22,6 +23,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     color: inherit;
     text-decoration: inherit;
   }
+
   /* Inherit fonts for inputs and buttons */
   input,
   button,
@@ -29,9 +31,10 @@ export const GlobalStyles = styled.createGlobalStyle`
   select {
     font: inherit;
   }
-  /* Rome all animations, transition and smooth scroll for people that prefer not to see */
+
+  /* Remove all animations, transition and smooth scroll for people that prefer not to see them*/
   @media (prefers-reduced-motion: reduce) {
-    html: focus-within {
+    html:focus-within {
       scroll-behavior: auto;
     }
     *,
@@ -39,7 +42,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0ms, 01ms !important;
+      transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
   }

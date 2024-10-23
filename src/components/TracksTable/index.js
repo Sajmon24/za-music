@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
+import { breakpoints } from "styles/BreakPoints";
 import { SubText } from "components/ui/Typography";
-import { Line, Table, TableHead, TableHeading, TableHeadingTime } from "./styled";
-import { TrackRow } from "./TrackRow";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 import { actions } from "context/actions";
 import { useWindowSize } from "hooks/useWindowSize";
-import { breakpoints } from "styles/BreakPoints";
+import { TrackRow } from "./TrackRow";
+import { Line, Table, TableHead, TableHeading, TableHeadingTime } from "./styled";
 
 function TracksTable({ tracks, isLoading }) {
   const { width } = useWindowSize();

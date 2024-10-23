@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { ReactComponent as ArrowRightIcon } from "assets/icons/arrow-right.svg";
 import { ReactComponent as MusicIcon } from "assets/icons/music.svg";

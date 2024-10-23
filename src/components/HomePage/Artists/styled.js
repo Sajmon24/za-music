@@ -19,7 +19,7 @@ export const ArtistsWrapper = styled.div`
   min-height: 116px;
 `;
 
-export const ArtistSkeleonWrapper = styled.div`
+export const ArtistSkeletonWrapper = styled.div`
   display: flex;
 `;
 

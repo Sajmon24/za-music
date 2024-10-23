@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { device } from "styles/BreakPoints";
 import { MainTitle, Text } from "components/ui/Typography";
 import Button from "components/ui/Button";
-import { device } from "styles/BreakPoints";
 
 const HERO_IMAGE_HIDDEN_BREAKPOINT = 1050;
 
@@ -23,6 +23,7 @@ export const Wrapper = styled.section`
     margin: 30px 0 35px;
   }
 `;
+
 export const HeroImage = styled.img`
   @media (max-width: ${HERO_IMAGE_HIDDEN_BREAKPOINT}px) {
     display: none;

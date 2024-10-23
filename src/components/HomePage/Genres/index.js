@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { toast } from "react-toastify";
-import { Pagination } from "swiper/modules";
-import GenreCard from "./GenreCard";
-import { loadGenres } from "services/api";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import { useWindowSize } from "hooks/useWindowSize";
+import { breakpoints } from "styles/BreakPoints";
+import { loadGenres } from "services/api";
+import GenreCard from "./GenreCard";
 import { SectionSubtitle } from "components/ui/Typography";
 import { ArrowLeft, ArrowRight } from "components/ui/Icons";
 import {
@@ -14,10 +16,8 @@ import {
   GenresWrapper,
   TitleRow,
   Wrapper,
-  GenreSkeleonWrapper,
+  GenreSkeletonWrapper,
 } from "./styled";
-import { breakpoints } from "styles/BreakPoints";
-import { useWindowSize } from "hooks/useWindowSize";
 
 function Genres() {
   const { width } = useWindowSize();
@@ -64,12 +64,11 @@ function Genres() {
           </Button>
         </ButtonsWrapper>
       </TitleRow>
-
       <GenresWrapper>
         {isLoading &&
           [...Array(8).keys()].map((num) => (
             <Skeleton
-              wrapper={GenreSkeleonWrapper}
+              wrapper={GenreSkeletonWrapper}
               key={num}
               width={width < breakpoints.md ? 137 : 220}
               height={width < breakpoints.md ? 95 : 116}

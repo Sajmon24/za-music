@@ -9,8 +9,10 @@ function ArtistCard({ image, name }) {
     </Wrapper>
   );
 }
+
 ArtistCard.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
 };
+
 export default ArtistCard;

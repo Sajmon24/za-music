@@ -1,15 +1,16 @@
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import PropTypes from "prop-types";
-import { Wrapper, ArtistsWrapper, ArtistSkeleonWrapper, ArtistLoaderWrapper } from "./styled";
-import ArtistCard from "./ArtistCard";
 import { useWindowSize } from "hooks/useWindowSize";
 import { breakpoints } from "styles/BreakPoints";
+import ArtistCard from "./ArtistCard";
+import { Wrapper, ArtistsWrapper, ArtistLoaderWrapper, ArtistSkeletonWrapper } from "./styled";
 
 function Artists({ isLoading, artists }) {
   const { width } = useWindowSize();
-  const isMobileLayout = width > breakpoints.md;
+  const isMobileLayout = width < breakpoints.md;
 
   return (
     <Wrapper>
@@ -18,20 +19,28 @@ function Artists({ isLoading, artists }) {
           [...Array(8).keys()].map((num) => (
             <ArtistLoaderWrapper key={num}>
               <Skeleton
-                wrapper={ArtistSkeleonWrapper}
+                wrapper={ArtistSkeletonWrapper}
                 key={num}
-                height={isMobileLayout ? 95 : 75}
-                width={isMobileLayout ? 95 : 75}
+                height={isMobileLayout ? 75 : 95}
+                width={isMobileLayout ? 75 : 95}
                 circle
+                style={{ margin: "0 auto" }}
               />
-              <Skeleton height={isMobileLayout ? 27 : 19} />
+              <Skeleton height={isMobileLayout ? 19 : 27} />
             </ArtistLoaderWrapper>
           ))}
-        <Swiper slidesPerView="auto" spaceBetween={20} modules={[Pagination]}>
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={20}
+          modules={[Pagination]}
+          style={{ marginLeft: 0 }}
+        >
           {!isLoading &&
             artists?.map((artist) => (
               <SwiperSlide key={artist.id} style={{ width: "auto" }}>
-                <ArtistCard name={artist.name} image={artist.picture_medium} />
+                <Link to={`/artists/${artist.id}`}>
+                  <ArtistCard name={artist.name} image={artist.picture_medium} />
+                </Link>
               </SwiperSlide>
             ))}
         </Swiper>

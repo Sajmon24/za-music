@@ -1,11 +1,11 @@
 import styled from "styled-components";
+import { device } from "styles/BreakPoints";
 import {
   HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
   MOBILE_PLAYER_HEIGHT,
   PLAYER_HEIGHT,
 } from "common/constants";
-import { device } from "styles/BreakPoints";
 
 export const Wrapper = styled.div`
   display: flex;

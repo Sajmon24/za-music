@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import SearchIcon from "assets/icons/search.svg";
-import { InputWrapper, NotFountText, TableTitle, Wrapper } from "./styled";
 import { search } from "services/api";
 import TracksTable from "components/TracksTable";
 import Input from "components/ui/Input";
+import { InputWrapper, NotFoundText, TableTitle, Wrapper } from "./styled";
 
 function Search() {
   const [isLoading, setIsLoading] = useState(false);
@@ -40,14 +40,14 @@ function Search() {
       </InputWrapper>
       {searchQuery && (
         <div>
-          <TableTitle>Result by:{searchQuery}</TableTitle>
+          <TableTitle>Results by:{searchQuery}</TableTitle>
           {(isLoading || (!isLoading && tracks?.length > 0)) && (
             <TracksTable isLoading={isLoading} tracks={tracks} />
           )}
         </div>
       )}
       {searchQuery && !isLoading && tracks?.length <= 0 && (
-        <NotFountText> Nothing was found :(</NotFountText>
+        <NotFoundText> Nothing was found :(</NotFoundText>
       )}
     </Wrapper>
   );

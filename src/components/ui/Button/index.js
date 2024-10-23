@@ -4,7 +4,7 @@ import { StyledButton } from "./styled";
 function Button(props) {
   return <StyledButton {...props}>{props.children}</StyledButton>;
 }
-Button.proTypes = {
+Button.propTypes = {
   children: PropTypes.node,
 };
 

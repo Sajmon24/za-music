@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  background-color: none;
+  background: none;
   border: none;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.white};

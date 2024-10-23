@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Logo, Search } from "components/ui/Icons";
 import { SectionSubtitle } from "components/ui/Typography";
-import { LogoWrapper, Wrapper } from "./styled";
 import IconButton from "components/ui/IconButton";
 import { ContentWrapper } from "components/Layout";
+import { LogoWrapper, Wrapper } from "./styled";
 
 function Header() {
   return (

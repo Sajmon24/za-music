@@ -1,6 +1,6 @@
-import IconButton from "components/ui/IconButton";
 import styled from "styled-components";
 import { device } from "styles/BreakPoints";
+import IconButton from "components/ui/IconButton";
 
 export const Wrapper = styled.section`
   display: flex;
@@ -15,14 +15,14 @@ export const Wrapper = styled.section`
   }
 `;
 
-export const TitleRow = styled.section`
+export const TitleRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 `;
 
-export const ButtonsWrapper = styled.section`
+export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -51,6 +51,6 @@ export const GenresWrapper = styled.div`
   }
 `;
 
-export const GenreSkeleonWrapper = styled.div`
+export const GenreSkeletonWrapper = styled.div`
   display: flex;
 `;

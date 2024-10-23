@@ -1,5 +1,10 @@
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
+import { theme } from "styles/Theme";
+import { breakpoints } from "styles/BreakPoints";
+import { formatSecondsToMSS } from "utils/time";
+import { Heart, Pause, Play } from "components/ui/Icons";
+import { SubText } from "components/ui/Typography";
 import {
   TableData,
   StyledTrackRow,
@@ -12,10 +17,6 @@ import {
   SongNumberText,
   StyledIconButton,
 } from "./styled";
-import { Heart, Pause, Play } from "components/ui/Icons";
-import { formatSecondsToMSS } from "utils/time";
-import { SubText } from "components/ui/Typography";
-import { breakpoints } from "styles/BreakPoints";
 
 export function TrackRow({
   track,
@@ -47,7 +48,7 @@ export function TrackRow({
           />
         )}
         <TrackInfoTextWrapper>
-          <TrackTitle>{track?.title || <Skeleton width={isMobileLayout ? 300 : 110} />}</TrackTitle>
+          <TrackTitle>{track?.title || <Skeleton width={isMobileLayout ? 320 : 110} />}</TrackTitle>
           <TrackSubtext>
             {track?.artist?.name || <Skeleton width={isMobileLayout ? 250 : 80} />}
           </TrackSubtext>

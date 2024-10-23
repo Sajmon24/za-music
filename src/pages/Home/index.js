@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Hero, Genres, Artists } from "components/HomePage";
-import { GreyTitle, StyledAside, TrendsAndArtistsSection } from "./styled";
-import { SectionTitle } from "components/ui/Typography";
 import { loadCharts, loadTopRadioTracks } from "services/api";
+import { Hero, Genres, Artists } from "components/HomePage";
 import TracksTable from "components/TracksTable";
+import { SectionTitle } from "components/ui/Typography";
+import { GreyTitle, StyledAside, TrendsAndArtistsSection } from "./styled";
 
 // Import Swiper styles
 import "swiper/css";

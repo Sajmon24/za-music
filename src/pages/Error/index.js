@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { Wrapper } from "./styled";
 import { ButtonText, SectionTitle } from "components/ui/Typography";
 import Button from "components/ui/Button";
+import { Wrapper } from "./styled";
 
 export function Error({ isErrorPage }) {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export function Error({ isErrorPage }) {
   );
 }
 
-Error.protoTypes = {
+Error.propTypes = {
   isErrorPage: PropTypes.bool,
 };
 

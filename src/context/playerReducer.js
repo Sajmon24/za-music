@@ -10,13 +10,14 @@ export const initialState = {
 
 export function playerReducer(state, action) {
   switch (action.type) {
-    case actions.SET_TRACKS_DATA:
+    case actions.SET_TRACKS_DATA: {
       return {
         ...state,
         isPlaying: action.isPlaying,
         track: action.track,
         tracks: action.tracks,
       };
+    }
     case actions.TOGGLE_PLAY: {
       return {
         ...state,
@@ -54,6 +55,7 @@ export function playerReducer(state, action) {
           savedTrackIds: newSavedTrackIds,
         };
       }
+
       return {
         ...state,
         savedTrackIds: [...state.savedTrackIds, action.trackId],

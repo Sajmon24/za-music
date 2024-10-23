@@ -1,6 +1,6 @@
-import { Text } from "components/ui/Typography";
 import styled from "styled-components";
 import { device } from "styles/BreakPoints";
+import { Text } from "components/ui/Typography";
 
 export const Wrapper = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { SectionSubtitle } from "components/ui/Typography";
 import { device } from "styles/BreakPoints";
+import { SectionSubtitle } from "components/ui/Typography";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   &::before {
     position: absolute;
     left: 0;
-    right: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     content: "";

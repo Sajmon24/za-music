@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-
 import { Wrapper, GenreName } from "./styled";
 
 function GenreCard({ backgroundImage, name }) {
@@ -9,8 +8,10 @@ function GenreCard({ backgroundImage, name }) {
     </Wrapper>
   );
 }
+
 GenreCard.propTypes = {
   backgroundImage: PropTypes.string,
   name: PropTypes.string,
 };
+
 export default GenreCard;

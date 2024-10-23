@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { device } from "styles/BreakPoints";
 import { SubText, Text } from "components/ui/Typography";
 import IconButton from "components/ui/IconButton";
-import { device } from "styles/BreakPoints";
 
 export const TableData = styled.td`
   padding: 10px 20px 10px 0;
@@ -15,8 +15,8 @@ export const TrackTitle = styled(Text)`
   -webkit-box-orient: vertical;
 
   ${device.md} {
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 18px;
+    line-height: 22px;
   }
 `;
 
@@ -26,6 +26,11 @@ export const TrackSubtext = styled(SubText)`
   line-clamp: 1;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+
+  ${device.md} {
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
 
 export const TrackInfo = styled(TableData)`

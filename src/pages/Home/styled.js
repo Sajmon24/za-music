@@ -1,7 +1,7 @@
-import { MOBILE_PLAYER_HEIGHT, PLAYER_HEIGHT } from "common/constants";
-import { SectionSubtitle } from "components/ui/Typography";
 import styled from "styled-components";
 import { device } from "styles/BreakPoints";
+import { SectionSubtitle } from "components/ui/Typography";
+import { MOBILE_PLAYER_HEIGHT, PLAYER_HEIGHT } from "common/constants";
 
 export const TrendsAndArtistsSection = styled.section`
   display: grid;

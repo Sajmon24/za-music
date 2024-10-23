@@ -1,8 +1,8 @@
 export const breakpoints = {
-  sm: 460, //for smaller mobiles
-  md: 768, //for tablets and big mobiles
-  lg: 1280, //for laptops and bigger tablets
-  xl: 1920, //for big screens and monitors
+  sm: 460, // for smaller mobiles
+  md: 768, // for tablets and big mobiles
+  lg: 1280, // for laptops and bigger tablets
+  xl: 1920, // for desktops
 };
 
 export const device = {

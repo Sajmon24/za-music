@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
-import DesktopRadioImage from "assets/images/radio-desktop.png";
-import TabletRadioImage from "assets/images/radio-tablet.png";
-import { HeroImage, HeroText, HeroTitleText, PlayButton, TextWrapper, Wrapper } from "./styled";
-import { ButtonText } from "components/ui/Typography";
-import { Play } from "components/ui/Icons";
+import { useWindowSize } from "hooks/useWindowSize";
 import { PlayerDispatchContext } from "context/playerContext";
 import { actions } from "context/actions";
-import { useWindowSize } from "hooks/useWindowSize";
 import { breakpoints } from "styles/BreakPoints";
+import DesktopRadioImage from "assets/images/radio-desktop.png";
+import TabletRadioImage from "assets/images/radio-tablet.png";
+import { ButtonText } from "components/ui/Typography";
+import { Play } from "components/ui/Icons";
+import { HeroImage, HeroText, HeroTitleText, PlayButton, TextWrapper, Wrapper } from "./styled";
 
 function Hero({ tracks }) {
   const { width } = useWindowSize();
@@ -26,11 +26,11 @@ function Hero({ tracks }) {
   return (
     <Wrapper>
       <TextWrapper>
-        <HeroTitleText> Radio </HeroTitleText>
-        <HeroText> Pick your mood. We will play a perfect mix! </HeroText>
+        <HeroTitleText>Radio</HeroTitleText>
+        <HeroText>Pick your todays mood. We will play a perfect mix!</HeroText>
         <PlayButton disabled={!tracks || tracks.length <= 0} onClick={handlePlayClick}>
           <Play />
-          <ButtonText> Play </ButtonText>
+          <ButtonText>Play</ButtonText>
         </PlayButton>
       </TextWrapper>
       <HeroImage
@@ -40,7 +40,7 @@ function Hero({ tracks }) {
     </Wrapper>
   );
 }
-Hero.protoTypes = {
+Hero.propTypes = {
   tracks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
