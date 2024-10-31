@@ -132,8 +132,8 @@ export const VolumeWrapper = styled.div`
   min-width: 180px;
 
   ${device.xl} {
-    margin: ${(props) => (props.open ? "48px auto 0" : "0 0 0 60px")};
-    width: ${(props) => (props.open ? "65%" : "auto")};
+    margin: ${(props) => (props.open ? "30px auto 48px" : "0 0 0 60px")};
+    width: ${(props) => (props.open ? "75%" : "auto")};
   }
 `;
 

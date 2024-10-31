@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { useWindowSize } from "hooks/useWindowSize";
 import { theme } from "styles/Theme";
 import { loadArtist } from "services/api";
+import { useLoadData } from "hooks/useLoadData";
 import { breakpoints } from "styles/BreakPoints";
 import { Music } from "components/ui/Icons";
 import { MainTitle, SectionTitle, SmallText } from "components/ui/Typography";
@@ -21,24 +20,7 @@ import {
 function Artist() {
   const { width } = useWindowSize();
   const { artistId } = useParams();
-  const [artist, setArtist] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        setIsLoading(true);
-        const artist = await loadArtist(artistId);
-        setArtist(artist);
-      } catch (err) {
-        toast.error(err.message);
-        //
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    loadData();
-  }, []);
+  const [artist, isLoading] = useLoadData(() => loadArtist(artistId));
 
   return (
     <Wrapper>
